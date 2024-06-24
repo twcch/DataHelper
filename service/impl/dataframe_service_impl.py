@@ -1,7 +1,38 @@
+import pandas as pd
+import numpy as np
+
 from service.dataframe_service import DataframeService
 
 
 class DataframeServiceImpl(DataframeService):
+    
+    def merge_column_to_new_column_if_none(self, dataframe, main_column, sub_column, new_column):
+        
+        dataframe[new_column] = np.nan
+        
+        for rows in range(dataframe.shape[0]):
+            if pd.isnull(dataframe[main_column].iloc[rows]) == False:
+                dataframe[new_column].iloc[rows] = dataframe[main_column].iloc[rows]
+            elif pd.isnull(dataframe[sub_column].iloc[rows]) == False:
+                dataframe[new_column].iloc[rows] = dataframe[sub_column].iloc[rows]
+            else:
+                dataframe[new_column].iloc[rows] = np.nan
+        
+        return dataframe
+    
+    def merge_column_to_new_column_if_empty(self, dataframe, main_column, sub_column, new_column):
+        
+        dataframe[new_column] = ""
+        
+        for rows in range(dataframe.shape[0]):
+            if dataframe[main_column].iloc[rows] != "":
+                dataframe[new_column].iloc[rows] = dataframe[main_column].iloc[rows]
+            elif dataframe[sub_column].iloc[rows] != "":
+                dataframe[new_column].iloc[rows] = dataframe[sub_column].iloc[rows]
+            else:
+                dataframe[new_column].iloc[rows] = ""
+        
+        return dataframe
     
     def set_column_type(self, dataframe, column_name_list, column_type):
         

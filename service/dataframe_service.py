@@ -4,6 +4,14 @@ from abc import ABC, abstractclassmethod
 class DataframeService(ABC):
     
     @abstractclassmethod
+    def merge_column_to_new_column_if_none(self, dataframe, main_column, sub_column, new_column):
+        pass
+    
+    @abstractclassmethod
+    def merge_column_to_new_column_if_empty(self, dataframe, main_column, sub_column, new_column):
+        pass
+    
+    @abstractclassmethod
     def set_column_type(self, dataframe, column_name_list, column_type):
         pass
     

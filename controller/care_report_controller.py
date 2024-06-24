@@ -37,7 +37,9 @@ class CareReportController():
         data = dataframe_service_impl.replace_data(data, column_name_list, 0, "")
         
         # merge column
-        
+        data = dataframe_service_impl.merge_column_to_new_column_if_empty(data, "CNCT_STAT", "CNCT_STA01", "NEW_CNCT_STAT")
+        data = dataframe_service_impl.merge_column_to_new_column_if_empty(data, "EMPY_NAME", "ADAAI1", "NEW_EMPY_NAME")
+        data = dataframe_service_impl.merge_column_to_new_column_if_empty(data, "MOBILE", "ADAOC1", "NEW_MOBILE")
         
         # drop column
         column_name_list = ["Unnamed: 65"]
