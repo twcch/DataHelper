@@ -1,0 +1,8 @@
+-- 顯示 utf8mb4 編碼可以使用的排序規則
+SHOW COLLATION WHERE Charset = 'utf8mb4'
+
+-- 確認某個 DB 用的字元跟排序設定
+SELECT DEFAULT_CHARACTER_SET_NAME,
+       DEFAULT_COLLATION_NAME
+FROM INFORMATION_SCHEMA.SCHEMATA
+WHERE SCHEMA_NAME = '<your DB name>';
